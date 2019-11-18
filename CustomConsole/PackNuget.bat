@@ -1,1 +1,1 @@
-cmd /K nuget pack ImageProcessing.nuspec
+cmd /K nuget pack NuGetSpec.nuspec

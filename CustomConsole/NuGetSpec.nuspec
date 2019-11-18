@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GiDRaPiTaRdA.CustomConsole</id>
+    <version>1.0.0</version>
+    <title>Custom Console Library</title>
+    <authors>GiDRaPiTaRdA</authors>
+    <owners>GiDRaPiTaRdA</owners>
+    <projectUrl>https://github.com/GiDRaPiTaRdA/CustomConsole</projectUrl>
+    <icon>icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This library is created to provide easy creation of console applications with menus, input parse and colored output</description>
+    <releaseNotes>Release</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>GiDRaPiTaRdA gidrapitarda custom console terminal color menu input colorful output</tags>
+    <license type="expression">MIT</license>
+  </metadata>
+  <files>
+    <file src="icon.png" target="" />
+    <file src ="bin\Release\CustomConsole.dll" target="lib"/>
+  </files>
+
+</package>
