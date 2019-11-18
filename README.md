@@ -1,46 +1,37 @@
 # Custom Console
 Customized console and menu console interactions
 
+Code example:
+
         static void Main(string[] args)
         {
-            string source = @"C:\Users\Maksim\Desktop\New folder\Debug1";
-
-            string target = @"C:\Work\Commons\NewCommons\ApplicationUpdater\ApplicationUpdaterService\Repository\Release";
-
-            string ignoreConfigPath = Path.Combine("Configs","IgnoreConfig.xml");
-
-            IgnoreConfig ignoreConfig = null;
-
             Dictionary<string, Action> commandsDiscionary = null;
             commandsDiscionary = new Dictionary<string, Action>
             {
                 {"set dir sourse", () =>
                     {
                         Console.WriteLine("Enter dir path:");
-                        source = Console.ReadLine();
+                        string source = Console.ReadLine();
                     }
                 },
                 {"dir source", ()=>Console.WriteLine($"Source: {source}")},
-
-                {"set dir target", () =>
-                    {
-                        Console.WriteLine("Enter dir path:");
-                        target = Console.ReadLine();
-                    }
-                },
-                {"dir target", ()=>Console.WriteLine($"Target: {target}")},
-                {"init ignore", ()=> ignoreConfig = LoadCreateIgnoreConfig(ignoreConfigPath)},
-                {"compose", () =>Compose(source,target,includeConfig: null)},
-                {"s",
+                {"do", DoWork},
+                {"sequence",
                     () =>
                     {
+                        commandsDiscionary.RunCommand("set dir sourse");
                         commandsDiscionary.RunCommand("dir source");
-                        commandsDiscionary.RunCommand("dir target");
-                        commandsDiscionary.RunCommand("init ignore");
-                        commandsDiscionary.RunCommand("compose");
+                        commandsDiscionary.RunCommand("do");
                     }},
             };
 
-            Console.WriteLine("->run [RELEASE COMPOSER]", ConsoleColor.Yellow);
+            Console.WriteLine("->run [TEST CONSOLE]", ConsoleColor.Yellow);
             ConsoleMenu.Help(commandsDiscionary);
             while (ConsoleMenu.Menu(commandsDiscionary)) { }
+            }
+        
+        static void RunCommand(this Dictionary<string, Action> commandsDiscionary, string command)
+        {
+            Console.WriteLine($"->{command}", ConsoleColor.Yellow);
+            commandsDiscionary[command].Invoke();
+        }
